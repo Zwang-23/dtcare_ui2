@@ -1,0 +1,18 @@
+services:
+  mediscope-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mediscope-ui
+    ports:
+      - "3003:80"
+    networks:
+      - dtcare-network
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+
+networks:
+  dtcare-network:
+    name: dtcare-network
+    driver: bridge

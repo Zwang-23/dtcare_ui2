@@ -1,0 +1,229 @@
+/* Modern DTcare Styles */
+.App {
+  text-align: center;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom scrollbar for other elements */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Patient selection cards hover effect */
+.patient-card {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.patient-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15) !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Recording button animations */
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  50% { 
+    transform: scale(1.05); 
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+  }
+}
+
+@keyframes spin {
+  to { 
+    transform: rotate(360deg); 
+  }
+}
+
+/* Medical color theme variables */
+:root {
+  --medical-blue: #3b82f6;
+  --medical-blue-dark: #1e40af;
+  --medical-green: #10b981;
+  --medical-green-dark: #059669;
+  --medical-red: #ef4444;
+  --medical-red-dark: #dc2626;
+  --medical-gray: #64748b;
+  --medical-gray-light: #f8fafc;
+  --medical-border: #e5e7eb;
+}
+
+/* Custom button styles */
+.record-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.record-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.record-button:hover::before {
+  left: 100%;
+}
+
+/* List item animations */
+.ant-list-item {
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card hover effects */
+.ant-card {
+  transition: all 0.2s ease;
+}
+
+.ant-card:hover {
+  transform: translateY(-1px);
+}
+
+/* Timeline placeholder styling */
+.timeline-placeholder {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.timeline-placeholder:hover {
+  border-color: #3b82f6;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+/* Medical icons styling */
+.medical-icon {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .ant-layout-sider {
+    width: 100% !important;
+  }
+  
+  .ant-layout-content {
+    padding: 16px !important;
+  }
+}
+
+/* Focus states for accessibility */
+.ant-btn:focus {
+  outline: 2px solid var(--medical-blue);
+  outline-offset: 2px;
+}
+
+/* Loading states */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  z-index: 10;
+}
+
+/* Status indicators */
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.status-indicator.recording {
+  background: var(--medical-red);
+  animation: pulse 1s infinite;
+}
+
+.status-indicator.idle {
+  background: var(--medical-green);
+}
+
+.status-indicator.processing {
+  background: var(--medical-blue);
+  animation: spin 1s linear infinite;
+}
+
+/* Custom divider styling */
+.ant-divider-horizontal.ant-divider-with-text-left::before {
+  border-top-color: var(--medical-blue);
+}
+
+.ant-divider-horizontal.ant-divider-with-text-left::after {
+  border-top-color: var(--medical-blue);
+}
+
+/* Audio player styling */
+audio {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+audio::-webkit-media-controls-panel {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 6px;
+}
+
+/* Typography enhancements */
+.ant-typography {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Header enhancements */
+.ant-layout-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
