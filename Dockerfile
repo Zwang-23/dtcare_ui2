@@ -1,5 +1,4 @@
-# Build stage
-FROM node:18-alpine AS builder
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -12,26 +11,16 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Build argument for API URL (can be overridden at build time)
-# Default for Docker: use nginx proxy at /api
-# For Cloud Run: override with actual backend URL
-ARG VITE_API_BASE_URL=/api
-ENV VITE_API_BASE_URL=$VITE_API_BASE_URL
-
 # Build the application
 RUN npm run build
 
-# Production stage
-FROM nginx:alpine
+# Install a simple static file server
+RUN npm install -g serve
 
-# Copy built assets from builder
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Expose port 8080 (Cloud Run default)
+EXPOSE 8080
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose port 80
-EXPOSE 80
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start the server pointing to the build output directory (dist)
+# -s: Single Page Application mode (rewrites 404s to index.html)
+# -l: Listen on port
+CMD ["serve", "-s", "dist", "-l", "8080"]
