@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3003,
+    port: 3000,
     host: true,
     // Proxy only needed for local non-Docker development
     // In Docker or Cloud Run, use VITE_API_BASE_URL instead
