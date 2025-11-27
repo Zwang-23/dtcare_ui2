@@ -31,7 +31,7 @@ const RadiologyAnalyzer: React.FC = () => {
       formData.append('prompt', 'Please analyze this medical image for any findings, abnormalities, or areas of concern.');
 
       // Use environment variable for API URL, fallback to local proxy if not set
-      const apiBaseUrl = import.meta.env.VITE_RADIOLOGY_API_URL;
+      const apiBaseUrl = "https://dtcare-imaging-28672555032.europe-west1.run.app";
       // Remove trailing slash if present to avoid double slashes
       const cleanBaseUrl = apiBaseUrl.replace(/\/$/, '');
       
