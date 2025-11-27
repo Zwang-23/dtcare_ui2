@@ -30,7 +30,12 @@ const RadiologyAnalyzer: React.FC = () => {
       formData.append('file', file);
       formData.append('prompt', 'Please analyze this medical image for any findings, abnormalities, or areas of concern.');
 
-      const response = await axios.post('/radiology-api/analyze', formData, {
+      // Use environment variable for API URL, fallback to local proxy if not set
+      const apiBaseUrl = import.meta.env.VITE_RADIOLOGY_API_URL;
+      // Remove trailing slash if present to avoid double slashes
+      const cleanBaseUrl = apiBaseUrl.replace(/\/$/, '');
+      
+      const response = await axios.post(`${cleanBaseUrl}/analyze`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

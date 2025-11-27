@@ -1,10 +1,11 @@
-
 import axios from 'axios';
 
 // Use environment variable for API base URL
 // In production (Cloud Run), this will be the backend service URL
 // In local Docker, this points to the backend container
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+console.log('Current API Base URL:', API_BASE_URL);
 
 const api = axios.create({
     baseURL: API_BASE_URL,

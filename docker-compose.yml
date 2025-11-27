@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     container_name: mediscope-ui
     ports:
-      - "3003:80"
+      - "3003:8080"
     networks:
       - dtcare-network
     restart: unless-stopped
